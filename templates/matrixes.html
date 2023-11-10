@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matrixes Database</title>
+</head>
+<body>
+    <h1>Matrixes Database</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Organism</th>
+            <th>Plant Tissue</th>
+            <th>Actions</th> <!-- Coluna para o botão de exclusão -->
+        </tr>
+        {% for matrix in matrixes %}
+        <tr>
+            <td>{{ matrix.matrixes_id }}</td>
+            <td><a href="/view_matrix_compounds/{{ matrix.matrixes_id }}">{{ matrix.organism }}</a></td>
+            <td>{{ matrix.plant_tissue }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('delete_matrix') }}">
+                    <input type="hidden" name="matrix_id" value="{{ matrix.matrixes_id }}">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Add Matrix</h2>
+    <form method="POST" action="/add_matrix">
+        <label for="organism">Organism:</label>
+        <input type="text" name="organism" required><br>
+        <label for="plant_tissue">Plant Tissue:</label>
+        <input type="text" name="plant_tissue" required><br>
+        <input type="submit" value="Add Matrix">
+    </form>
+    <a href="/compound">Compounds</a>
+</body>
+</html>
+
+

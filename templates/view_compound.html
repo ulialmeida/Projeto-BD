@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes do Composto</title>
+</head>
+<body>
+    <h1>Detalhes do Composto</h1>
+    <h2>Compound ID: {{ compound.compound_id }}</h2>
+    <p><strong>Composto:</strong> {{ compound.compound }}</p>
+    <p><strong>Fórmula Molecular:</strong> {{ compound.molecular_formula }}</p>
+    <p><strong>Massa Molecular:</strong> {{ compound.molecular_mass }}</p>
+    
+    <h2>Matrizes de Identificação</h2>
+    <ul>
+        {% for matrix in matrix_info %}
+        <li>{{ matrix.organism }} - {{ matrix.plant_tissue }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Nomes de Autores</h2>
+    <ul>
+        {% for name in name_info %}
+        <li>{{ name.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

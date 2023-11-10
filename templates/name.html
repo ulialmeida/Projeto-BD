@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authors</title>
+</head>
+<body>
+    <h1>Authors</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        {% for name in names %}
+        <tr>
+            <td>{{ name.name_id }}</td>
+            <td><a href="/view_author_compounds/{{ name.name_id }}">{{ name.name }}</a></td>
+            <td>
+                <form method="POST" action="{{ url_for('delete_name') }}">
+                    <input type="hidden" name="name_id" value="{{ name.name_id }}">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add Name</h2>
+    <form method="POST" action="/add_name">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br>
+        <input type="submit" value="Add Name">
+    </form>
+
+    <!-- Botão para a página "/compounds" (Compounds) -->
+    <a href="/compound">Compounds</a>
+    <!-- Botão para a página "/matrixes" (Matrixes) -->
+    <a href="/matrixes">Matrixes</a>
+</body>
+</html>
+

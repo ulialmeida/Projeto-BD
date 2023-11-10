@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Identification Database</title>
+</head>
+<body>
+    <h1>Identification Database</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Compound ID</th>
+            <th>Matrix ID</th>
+            <th>Name ID</th>
+        </tr>
+        {% for identification in identifications %}
+        <tr>
+            <td>{{ identification.identification_id }}</td>
+            <td>{{ identification.compound_id }}</td>
+            <td>{{ identification.matrix_id }}</td>
+            <td>{{ identification.name_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Add Identification</h2>
+    <form method="POST" action="/add_identification">
+        <label for="compound_id">Compound ID:</label>
+        <input type="number" name="compound_id" required><br>
+        <label for="matrix_id">Matrix ID:</label>
+        <input type="number" name="matrix_id" required><br>
+        <label for="name_id">Name ID:</label>
+        <input type="number" name="name_id" required><br>
+        <input type="submit" value="Add Identification">
+    </form>
+    <!-- Botão para a página "/compound" -->
+    <a href="/compound">Compounds</a>
+    <!-- Botão para a página "/matrixes" -->
+    <a href="/matrixes">Matrixes</a>
+    <!-- Botão para a página "/name" -->
+    <a href="/name">Authors</a>
+</body>
+</html>

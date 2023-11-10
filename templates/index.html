@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compounds Database</title>
+</head>
+<body>
+    <h1>Compounds Database</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Compound</th>
+            <th>Molecular Formula</th>
+            <th>Molecular Mass</th>
+            <th>Actions</th>
+        </tr>
+        {% for compound in compounds %}
+        <tr>
+            <td>{{ compound.compound_id }}</td>
+            <td><a href="{{ url_for('view_compound', compound_id=compound.compound_id) }}">{{ compound.compound }}</a></td>
+            <td>{{ compound.molecular_formula }}</td>
+            <td>{{ compound.molecular_mass }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('delete_compound') }}">
+                    <input type="hidden" name="compound_id" value="{{ compound.compound_id }}">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Add Compound</h2>
+    <form method="POST" action="/add_compound">
+        <label for="compound">Compound:</label>
+        <input type="text" name="compound" required><br>
+        <label for="molecular_formula">Molecular Formula:</label>
+        <input type="text" name="molecular_formula" required><br>
+        <label for "molecular_mass">Molecular Mass:</label>
+        <input type="number" step="any" name="molecular_mass" required><br>
+        <input type="submit" value="Add Compound">
+    </form>
+
+    <!-- Botão para a página "/matrixes" -->
+    <a href="/matrixes">Ir para Matrixes</a>
+    <!-- Botão para a página "/name" -->
+    <a href="/name">Authors</a>
+    <!-- Botão para a página "/identification" -->
+    <a href="/identification">Identification</a>
+</body>
+</html>
+
